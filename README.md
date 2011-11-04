@@ -4,7 +4,7 @@
     }=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}
 
 
-      A simple gem for using Backbone with Rails -> 3.1
+      A simple gem for using Backbone with Rails (>= 3.1)
 
 
     Features
