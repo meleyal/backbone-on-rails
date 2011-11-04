@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["William Meleyal"]
   s.email       = ["william.meleyal@gmail.com"]
   s.homepage    = "http://github.com/meleyal/backbone-on-rails"
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = "A simple gem for using Backbone with Rails -> 3.1"
+  s.description = "A simple gem for using Backbone with Rails -> 3.1"
 
   s.rubyforge_project = "backbone-on-rails"
 
