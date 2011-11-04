@@ -1,4 +1,4 @@
-
+        
     B a c k b o n e   o n   R a i l s
 
     }=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}
@@ -31,7 +31,7 @@
 
       rails generate backbone:install
 
-      rails generate backbone:scaffold cat
+      rails generate backbone:scaffold dog
 
 
     Tricks
@@ -51,4 +51,4 @@
       * https://github.com/aflatter/backbone-rails
 
 
-    [1] http://bit.ly/h4sy
+    [1] http://bit.ly/vylNJO
