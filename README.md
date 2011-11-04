@@ -1,4 +1,4 @@
-
+        
     B a c k b o n e   o n   R a i l s
 
     }=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}
@@ -12,9 +12,9 @@
 
       * Vendors the latest Backbone.js + Underscore.js in the asset pipeline
 
-      * Install generator to create a skeleton[1] directory structure and manifest
+      * Provides an install generator to create a skeleton[1] directory structure and manifest
 
-      * Scaffold generator to create files and boilerplate
+      * Provides a scaffold generator to create files and boilerplate
 
       * Uses the naming conventions from
         thoughbot's 'Backbone.js on Rails' http://bit.ly/pLsmzr
@@ -31,7 +31,7 @@
 
       rails generate backbone:install
 
-      rails generate backbone:scaffold cat
+      rails generate backbone:scaffold dog
 
 
     Tricks
@@ -39,7 +39,7 @@
 
       rails generate backbone:install -j,   # Generate JavaScript
 
-      rails destroy backbone:scaffold cat   # Remove generated files
+      rails destroy backbone:scaffold dog   # Remove generated files
 
 
     Alternatives
@@ -51,4 +51,4 @@
       * https://github.com/aflatter/backbone-rails
 
 
-    [1] http://bit.ly/h4sy
+    [1] http://bit.ly/vylNJO
