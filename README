@@ -1,10 +1,11 @@
-
 B a c k b o n e   o n   R a i l s
 
 }=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}
 
 
-  A simple gem for using Backbone with Rails (>= 3.1)
+  A simple gem for using Backbone.js with Rails (>= 3.1)
+  
+  http://git.io/backbone-on-rails
 
 
 Features
@@ -17,7 +18,7 @@ Features
   * Provides a scaffold generator to create files and boilerplate
 
   * Uses the naming conventions from
-    thoughbot's 'Backbone.js on Rails' http://bit.ly/pLsmzr
+    thoughtbot's 'Backbone.js on Rails' http://bit.ly/pLsmzr
 
   * Generates CoffeeScript (default) or JavaScript
 
