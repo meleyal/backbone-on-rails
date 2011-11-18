@@ -31,7 +31,7 @@ module Backbone
       end
 
       def template_namespace
-        ['templates', file_name.pluralize, "index"].join("/")
+        [file_name.pluralize, "index"].join("/")
       end
 
       def app_name
