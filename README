@@ -3,7 +3,8 @@ B a c k b o n e   o n   R a i l s
 }=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}=}
 
 
-  A simple gem for using Backbone.js with Rails (>= 3.1)
+  A simple gem for using Backbone.js with Rails (>= 3.1),
+  based on thoughtbot's 'Backbone.js on Rails'.
   
   http://git.io/backbone-on-rails
 
