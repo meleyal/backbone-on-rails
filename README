@@ -33,7 +33,7 @@ Usage
 
   rails generate backbone:install
 
-  rails generate backbone:scaffold dog
+  rails generate backbone:scaffold dinosaur
 
 
 Tricks
@@ -41,7 +41,7 @@ Tricks
 
   rails generate backbone:install -j,   # Generate JavaScript
 
-  rails destroy backbone:scaffold dog   # Remove generated files
+  rails destroy backbone:scaffold dinosaur   # Remove generated files
 
 
 Alternatives
