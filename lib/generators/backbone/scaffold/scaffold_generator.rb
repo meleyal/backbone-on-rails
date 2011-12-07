@@ -19,25 +19,25 @@ module Backbone
       end
 
       def create_backbone_model
-        template "model#{@ext}", File.join(js_path, "models", "#{file_name.singularize}#{@ext}")
+        template "model#{@ext}", File.join(js_path, namespaced_path, "models", "#{file_name.singularize}#{@ext}")
       end
 
       def create_backbone_collection
-        template "collection#{@ext}",  File.join(js_path, "collections", "#{file_name.pluralize}#{@ext}")
+        template "collection#{@ext}",  File.join(js_path, namespaced_path, "collections", "#{file_name.pluralize}#{@ext}")
       end
 
       def create_backbone_router
-        template "router#{@ext}",  File.join(js_path, "routers", "#{file_name.pluralize}_router#{@ext}")
+        template "router#{@ext}",  File.join(js_path, namespaced_path, "routers", "#{file_name.pluralize}_router#{@ext}")
       end
 
       def create_backbone_view
-        empty_directory File.join(js_path, "views", file_name.pluralize)
-        template "view#{@ext}",  File.join(js_path, '/views/', file_name.pluralize, "#{file_name.pluralize}_index#{@ext}")
+        empty_directory File.join(js_path, namespaced_path, "views", file_name.pluralize)
+        template "view#{@ext}",  File.join(js_path, namespaced_path, 'views', file_name.pluralize, "#{file_name.pluralize}_index#{@ext}")
       end
 
       def create_backbone_template
-        empty_directory File.join(template_path, file_name.pluralize)
-        template "template.jst#{@jst}",  File.join(template_path, file_name.pluralize, "index.jst#{@jst}")
+        empty_directory File.join(template_path, namespaced_path, file_name.pluralize)
+        template "template.jst#{@jst}",  File.join(template_path, namespaced_path, file_name.pluralize, "index.jst#{@jst}")
       end
 
     end

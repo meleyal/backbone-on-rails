@@ -8,30 +8,31 @@ module Backbone
 
       source_root File.expand_path("../templates", __FILE__)
 
-      desc "Generates a Backbone.js skeleton directory structure and mainfest"
+      desc "Generates a Backbone.js skeleton directory structure and manifest"
 
       class_option :javascript, :type => :boolean, :aliases => "-j", :default => false,
                                 :desc => "Generate JavaScript"
 
+      class_option :namespace, :type => :string, :aliases => "-n", :default => '',
+                                :desc => "Namespace backbone application in specified directory tree"
+
+      class_option :manifest, :type => :string, :aliases => "-m", :default => 'application.js',
+                                :desc => "Javascript manifest file to modify (or create)"
+
       def inject_backbone
         libs = ['underscore', 'backbone']
-        paths = ['../templates', './models', './collections', './views', './routers']
+        manifest = options[:manifest]
+        paths = [ "../templates#{namespaced_path}", ".#{namespaced_path}/models",
+                  ".#{namespaced_path}/collections", ".#{namespaced_path}/views", ".#{namespaced_path}/routers"]
 
-        begin
-          file = 'application.js'
-          if FileTest.exists?("#{js_path}/application.js.coffee")
-            file = 'application.js.coffee'
-          end
-        rescue
-          # TODO: catch error, show feedback
-        end
+        create_file("#{js_path}/#{manifest}") unless File.exists?("#{js_path}/#{manifest}")
 
-        inject_into_file "#{js_path}/#{file}", :before => "//= require_tree" do
+        append_to_file "#{js_path}/#{manifest}" do
           out = ""
           out << libs.map{ |lib| "//= require #{lib}" }.join("\n")
-          out << "\n\n"
-          out << "//= require #{app_filename}"
-          out << "\n\n"
+          out << "\n//\n"
+          out << "//= require .#{app_filename}"
+          out << "\n//\n"
           out << paths.map{ |path| "//= require_tree #{path}" }.join("\n")
           out << "\n"
         end
@@ -39,11 +40,11 @@ module Backbone
 
       def create_dir_layout
         %W{collections models routers views}.each do |dir|
-          empty_directory "#{js_path}/#{dir}"
+          empty_directory "#{js_path}#{namespaced_path}/#{dir}"
         end
 
         %W{templates}.each do |dir|
-          empty_directory "#{asset_path}/#{dir}"
+          empty_directory "#{asset_path}/#{dir}#{namespaced_path}"
         end
       end
 
