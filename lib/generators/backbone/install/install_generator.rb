@@ -17,7 +17,16 @@ module Backbone
         libs = ['underscore', 'backbone']
         paths = ['../templates', './models', './collections', './views', './routers']
 
-        inject_into_file "#{js_path}/application.js", :before => "//= require_tree" do
+        begin
+          file = 'application.js'
+          if FileTest.exists?("#{js_path}/application.js.coffee")
+            file = 'application.js.coffee'
+          end
+        rescue
+          # TODO: catch error, show feedback
+        end
+
+        inject_into_file "#{js_path}/#{file}", :before => "//= require_tree" do
           out = ""
           out << libs.map{ |lib| "//= require #{lib}" }.join("\n")
           out << "\n\n"
