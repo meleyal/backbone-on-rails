@@ -14,7 +14,8 @@ Features
 
   * Vendors the latest Backbone.js + Underscore.js in the asset pipeline
 
-  * Provides an install generator to create a skeleton[1] directory structure and manifest
+  * Provides an install generator to create a skeleton[1] directory 
+    structure and manifest
 
   * Provides a scaffold generator to create files and boilerplate
 
@@ -35,13 +36,15 @@ Usage
 
   rails generate backbone:scaffold dinosaur
 
+  See also: http://railscasts.com/episodes/323-backbone-on-rails-part-1
+
 
 Tricks
 ------
 
-  rails generate backbone:install -j,   # Generate JavaScript
+  rails generate backbone:install -j,       # Generate JavaScript
 
-  rails destroy backbone:scaffold dinosaur   # Remove generated files
+  rails destroy backbone:scaffold dinosaur  # Remove generated files
 
 
 Alternatives
