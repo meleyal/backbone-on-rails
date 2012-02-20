@@ -19,15 +19,15 @@ module Backbone
       end
 
       def collection_namespace
-        [app_name, "Collections", file_name.singularize.camelize].join(".")
+        [app_name, "Collections", file_name.pluralize.camelize].join(".")
       end
 
       def router_namespace
-        [app_name, "Routers", file_name.singularize.camelize].join(".")
+        [app_name, "Routers", file_name.pluralize.camelize].join(".")
       end
 
       def view_namespace
-        [app_name, "Views", "#{file_name.singularize.camelize}Index"].join(".")
+        [app_name, "Views", "#{file_name.pluralize.camelize}Index"].join(".")
       end
 
       def template_namespace
@@ -35,7 +35,7 @@ module Backbone
       end
 
       def app_name
-        rails_app_name.camelize + namespaces.map!{|x| x.camelize}.join('')
+        rails_app_name.camelize + namespaces.map!{ |n| n.camelize }.join('')
       end
 
       def app_filename
