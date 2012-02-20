@@ -27,12 +27,12 @@ module Backbone
       end
 
       def create_backbone_router
-        template "router#{@ext}",  File.join(js_path, namespaced_path, "routers", "#{file_name.pluralize}_router#{@ext}")
+        template "router#{@ext}",  File.join(js_path, namespaced_path, "routers", "#{file_name.pluralize}#{@ext}")
       end
 
       def create_backbone_view
         empty_directory File.join(js_path, namespaced_path, "views", file_name.pluralize)
-        template "view#{@ext}",  File.join(js_path, namespaced_path, 'views', file_name.pluralize, "#{file_name.pluralize}_index#{@ext}")
+        template "view#{@ext}",  File.join(js_path, namespaced_path, 'views', file_name.pluralize, "index#{@ext}")
       end
 
       def create_backbone_template
