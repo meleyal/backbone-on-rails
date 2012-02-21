@@ -34,17 +34,51 @@ Usage
 
   rails generate backbone:install
 
-  rails generate backbone:scaffold dinosaur
+  rails generate backbone:scaffold planet
 
   See also: http://railscasts.com/episodes/323-backbone-on-rails-part-1
 
 
-Tricks
+Output
 ------
 
-  rails generate backbone:install -j,       # Generate JavaScript
+Example output from backbone:scaffold planet
 
-  rails destroy backbone:scaffold dinosaur  # Remove generated files
+  app/assets/
+  ├── javascripts
+  │   ├── appliplanetion.js
+  │   ├── my_app.js.coffee
+  │   ├── collections
+  │   │   └── planets.js.coffee
+  │   ├── models
+  │   │   └── planet.js.coffee
+  │   ├── routers
+  │   │   └── planets.js.coffee
+  │   └── views
+  │       └── planets
+  │           └── index.js.coffee
+  └── templates
+      └── planets
+          └── index.jst.eco
+
+
+Tricks
+------
+  
+  # Custom manifest
+  rails generate backbone:install --manifest index.js         
+
+  # Namespaced install
+  rails generate backbone:install --namespace solar_system    
+
+  # Namespaced scaffold
+  rails generate backbone:scaffold solar_system/planet
+  
+  # Generate JavaScript
+  rails generate backbone:install --javascript         
+
+  # Remove generated files
+  rails destroy backbone:scaffold planet              
 
 
 Alternatives
