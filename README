@@ -47,7 +47,7 @@ Output
   app/assets/
   ├── javascripts
   │   ├── application.js
-  │   ├── my_app.js.coffee
+  │   ├── space_app.js.coffee
   │   ├── collections
   │   │   └── planets.js.coffee
   │   ├── models
