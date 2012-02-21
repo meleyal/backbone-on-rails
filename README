@@ -42,11 +42,11 @@ Usage
 Output
 ------
 
-Example output from backbone:scaffold planet
+  Example output from backbone:scaffold planet
 
   app/assets/
   ├── javascripts
-  │   ├── appliplanetion.js
+  │   ├── application.js
   │   ├── my_app.js.coffee
   │   ├── collections
   │   │   └── planets.js.coffee
