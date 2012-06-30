@@ -25,9 +25,10 @@ module Backbone
         paths = [ "../templates#{namespaced_path}", ".#{namespaced_path}/models",
                   ".#{namespaced_path}/collections", ".#{namespaced_path}/views", ".#{namespaced_path}/routers"]
 
-        create_file("#{js_path}/#{manifest}") unless File.exists?("#{js_path}/#{manifest}")
+        sentinel =  /\/\/=\s+require_tree\s+\.[^\/\w]*/
 
-        append_to_file "#{js_path}/#{manifest}" do
+        in_root do
+          create_file("#{js_path}/#{manifest}") unless File.exists?("#{js_path}/#{manifest}")
           out = ""
           out << libs.map{ |lib| "//= require #{lib}" }.join("\n")
           out << "\n//\n"
@@ -35,14 +36,16 @@ module Backbone
           out << "\n//\n"
           out << paths.map{ |path| "//= require_tree #{path}" }.join("\n")
           out << "\n"
+          inject_into_file "#{js_path}/#{manifest}", "\n  #{out}\n", { :before => sentinel, :verbose => true}
         end
+
       end
 
       def create_dir_layout
         %W{collections models routers views}.each do |dir|
           empty_directory "#{js_path}#{namespaced_path}/#{dir}"
         end
-
+ 
         %W{templates}.each do |dir|
           empty_directory "#{asset_path}/#{dir}#{namespaced_path}"
         end
@@ -53,7 +56,6 @@ module Backbone
         ext = js ? ".js" : ".js.coffee"
         template "app#{ext}", "#{js_path}/#{app_filename}#{ext}"
       end
-
     end
   end
 end
