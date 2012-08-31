@@ -18,6 +18,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'railties', '>= 3.1'
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'ejs', '~> 1.0.0'
-  s.add_dependency 'eco', '~> 1.0.0'
+  s.add_dependency 'ejs'
+  s.add_dependency 'eco'
 end
