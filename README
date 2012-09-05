@@ -12,9 +12,9 @@ B a c k b o n e   o n   R a i l s
 Features
 --------
 
-  * Vendors the latest Backbone.js + Underscore.js in the asset pipeline
+  * Vendors the latest Backbone.js + Underscore.js in the asset pipeline[1]
 
-  * Provides an install generator to create a skeleton[1] directory
+  * Provides an install generator to create a skeleton[2] directory
     structure and manifest
 
   * Provides a scaffold generator to create files and boilerplate
@@ -95,4 +95,5 @@ Alternatives
   * https://github.com/aflatter/backbone-rails
 
 
-[1] http://bit.ly/vylNJO
+[1] json2.js not included
+[2] http://bit.ly/vylNJO
