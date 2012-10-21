@@ -14,7 +14,7 @@ Features
 
   * Vendors the latest Backbone.js + Underscore.js in the asset pipeline[1]
 
-  * Provides an install generator to create a skeleton[2] directory
+  * Provides an install generator to create a skeleton directory
     structure and manifest
 
   * Provides a scaffold generator to create files and boilerplate
@@ -73,12 +73,6 @@ Tricks
   # Custom manifest
   rails generate backbone:install --manifest index.js
 
-  # Namespaced install
-  rails generate backbone:install --namespace solar_system
-
-  # Namespaced scaffold
-  rails generate backbone:scaffold solar_system/planet
-
   # Generate JavaScript
   rails generate backbone:install --javascript
 
@@ -96,4 +90,3 @@ Alternatives
 
 
 [1] json2.js not included
-[2] http://bit.ly/vylNJO
