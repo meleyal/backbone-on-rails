@@ -47,21 +47,21 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
   test "router coffee file is created" do
     run_generator ['planet']
-    assert_file "#{router_path}/planets.js.coffee" do |content|
+    assert_file "#{router_path}/planets_router.js.coffee" do |content|
       assert_match('class Dummy.Routers.Planets', content)
     end
   end
 
   test "router javascript file is created" do
     run_generator ['planet', '--javascript']
-    assert_file "#{router_path}/planets.js" do |content|
+    assert_file "#{router_path}/planets_router.js" do |content|
       assert_match('Dummy.Routers.Planets = Backbone.Router.extend', content)
     end
   end
 
   test "view coffee file is created" do
     run_generator ['planet']
-    assert_file "#{view_path}/planets/index.js.coffee" do |content|
+    assert_file "#{view_path}/planets/planets_index.js.coffee" do |content|
       assert_match('class Dummy.Views.PlanetsIndex', content)
       assert_match("template: JST['planets/index']", content)
     end
@@ -69,7 +69,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
 
   test "view javascript file is created" do
     run_generator ['planet', '--javascript']
-    assert_file "#{view_path}/planets/index.js" do |content|
+    assert_file "#{view_path}/planets/planets_index.js" do |content|
       assert_match('Dummy.Views.PlanetsIndex = Backbone.View.extend', content)
       assert_match("template: JST['planets/index']", content)
     end

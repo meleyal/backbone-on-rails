@@ -32,13 +32,13 @@ module Backbone
       end
 
       def create_backbone_router
-        file = File.join(router_path, plural_file_name)
+        file = File.join(router_path, router_file_name)
         template "router#{@ext}", file
       end
 
       def create_backbone_view
         empty_directory File.join(view_path, file_name.pluralize)
-        file = File.join(view_path, file_name.pluralize, "index#{@ext}")
+        file = File.join(view_path, file_name.pluralize, view_file_name)
         template "view#{@ext}", file
       end
 

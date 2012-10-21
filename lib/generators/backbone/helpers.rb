@@ -38,6 +38,14 @@ module Backbone
         "#{file_name.pluralize}#{@ext}"
       end
 
+      def router_file_name
+        "#{file_name.pluralize}_router#{@ext}"
+      end
+
+      def view_file_name
+        "#{file_name.pluralize}_index#{@ext}"
+      end
+
       def model_namespace
         [app_name, "Models", file_name.singularize.camelize].join(".")
       end
