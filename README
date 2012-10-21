@@ -58,10 +58,10 @@ Output
   │   ├── models
   │   │   └── planet.js.coffee
   │   ├── routers
-  │   │   └── planets.js.coffee
+  │   │   └── planets_router.js.coffee
   │   └── views
   │       └── planets
-  │           └── index.js.coffee
+  │           └── planets_index.js.coffee
   └── templates
       └── planets
           └── index.jst.eco
