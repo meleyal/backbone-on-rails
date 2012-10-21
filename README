@@ -34,7 +34,7 @@ Usage
 
   rails generate backbone:install
 
-  rails generate backbone:scaffold planet
+  rails generate backbone:scaffold NAME
 
   Note:
     Remember to restart the server after installing
