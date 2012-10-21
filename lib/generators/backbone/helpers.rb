@@ -6,12 +6,8 @@ module Backbone
         "app/assets"
       end
 
-      def js_path
+      def javascript_path
         "#{asset_path}/javascripts"
-      end
-
-      def template_path
-        "#{asset_path}/templates"
       end
 
       def model_namespace
@@ -35,23 +31,15 @@ module Backbone
       end
 
       def app_name
-        rails_app_name.camelize + namespaces.map!{ |n| n.camelize }.join('')
+        rails_app_name.camelize
       end
 
       def app_filename
-        "#{namespaced_path}/#{rails_app_name.underscore}"
+        rails_app_name.underscore
       end
 
       def rails_app_name
         Rails.application.class.name.split('::').first
-      end
-
-      def namespaces
-        options[:namespace] ? options[:namespace].split('/') : file_path.split('/')[0...-1]
-      end
-
-      def namespaced_path
-        '/' + namespaces.join('/')
       end
 
     end

@@ -10,52 +10,48 @@ module Backbone
 
       desc "Generates a Backbone.js skeleton directory structure and manifest"
 
-      class_option :javascript, :type => :boolean, :aliases => "-j", :default => false,
-                                :desc => "Generate JavaScript"
+      class_option :javascript, type: :boolean, aliases: "-j", default: false,
+                    desc: "Generate JavaScript"
 
-      class_option :namespace, :type => :string, :aliases => "-n", :default => '',
-                                :desc => "Namespace backbone application in specified directory tree"
-
-      class_option :manifest, :type => :string, :aliases => "-m", :default => 'application.js',
-                                :desc => "Javascript manifest file to modify (or create)"
-
-      def inject_backbone
-        libs = ['underscore', 'backbone']
-        manifest = options[:manifest]
-        paths = [ "../templates#{namespaced_path}", ".#{namespaced_path}/models",
-                  ".#{namespaced_path}/collections", ".#{namespaced_path}/views", ".#{namespaced_path}/routers"]
-
-        sentinel =  /\/\/=\s+require_tree\s+\.[^\/\w]*/
-
-        in_root do
-          create_file("#{js_path}/#{manifest}") unless File.exists?("#{js_path}/#{manifest}")
-          out = ""
-          out << libs.map{ |lib| "//= require #{lib}" }.join("\n")
-          out << "\n//\n"
-          out << "//= require .#{app_filename}"
-          out << "\n//\n"
-          out << paths.map{ |path| "//= require_tree #{path}" }.join("\n")
-          out << "\n"
-          inject_into_file "#{js_path}/#{manifest}", "\n  #{out}\n", { :before => sentinel, :verbose => true}
-        end
-
-      end
+      class_option :manifest, type: :string, aliases: "-m", default: "application.js",
+                    desc: "Javascript manifest file to modify (or create)"
 
       def create_dir_layout
-        %W{collections models routers views}.each do |dir|
-          empty_directory "#{js_path}#{namespaced_path}/#{dir}"
-        end
- 
-        %W{templates}.each do |dir|
-          empty_directory "#{asset_path}/#{dir}#{namespaced_path}"
-        end
+        empty_directory "#{javascript_path}/models"
+        empty_directory "#{javascript_path}/collections"
+        empty_directory "#{javascript_path}/routers"
+        empty_directory "#{javascript_path}/views"
+        empty_directory "#{asset_path}/templates"
       end
 
       def create_app_file
-        js = options[:javascript]
+        js = options.javascript
         ext = js ? ".js" : ".js.coffee"
-        template "app#{ext}", "#{js_path}/#{app_filename}#{ext}"
+        template "app#{ext}", "#{javascript_path}/#{app_filename}#{ext}"
       end
+
+      def inject_backbone
+        manifest = "#{javascript_path}/#{options.manifest}"
+        custom_manifest = options.manifest != 'application.js'
+        libs = %w(underscore backbone)
+        paths = %w(../templates ./models ./collections ./views ./routers)
+        sentinel =  /\/\/=\s+require_tree\s+\.[^\/\w]*/
+
+        in_root do
+          create_file(manifest) unless File.exists?(manifest)
+          out = []
+          out << libs.map{ |lib| "//= require #{lib}" }
+          out << "//= require #{app_filename}"
+          out << paths.map{ |path| "//= require_tree #{path}" }
+          out = out.join("\n") + "\n"
+          if custom_manifest
+            append_file(manifest, out)
+          else
+            inject_into_file(manifest, out, before: sentinel)
+          end
+        end
+      end
+
     end
   end
 end
