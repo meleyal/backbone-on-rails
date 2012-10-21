@@ -9,35 +9,43 @@ module Backbone
 
       desc "Generates a Backbone.js resource scaffold"
 
-      class_option :javascript, :type => :boolean, :aliases => "-j", :default => false,
-                                :desc => "Generate JavaScript"
+      class_option :javascript,
+                    type: :boolean,
+                    aliases: "-j",
+                    default: false,
+                    desc: "Generate JavaScript"
 
       def parse_options
-        js = options[:javascript]
+        js = options.javascript
         @ext = js ? ".js" : ".js.coffee"
         @jst = js ? ".ejs" : ".eco"
       end
 
       def create_backbone_model
-        template "model#{@ext}", File.join(js_path, namespaced_path, "models", "#{file_name.singularize}#{@ext}")
+        file = File.join(model_path, singular_file_name)
+        template "model#{@ext}", file
       end
 
       def create_backbone_collection
-        template "collection#{@ext}",  File.join(js_path, namespaced_path, "collections", "#{file_name.pluralize}#{@ext}")
+        file = File.join(collection_path, plural_file_name)
+        template "collection#{@ext}", file
       end
 
       def create_backbone_router
-        template "router#{@ext}",  File.join(js_path, namespaced_path, "routers", "#{file_name.pluralize}#{@ext}")
+        file = File.join(router_path, plural_file_name)
+        template "router#{@ext}", file
       end
 
       def create_backbone_view
-        empty_directory File.join(js_path, namespaced_path, "views", file_name.pluralize)
-        template "view#{@ext}",  File.join(js_path, namespaced_path, 'views', file_name.pluralize, "index#{@ext}")
+        empty_directory File.join(view_path, file_name.pluralize)
+        file = File.join(view_path, file_name.pluralize, "index#{@ext}")
+        template "view#{@ext}", file
       end
 
       def create_backbone_template
-        empty_directory File.join(template_path, namespaced_path, file_name.pluralize)
-        template "template.jst#{@jst}",  File.join(template_path, namespaced_path, file_name.pluralize, "index.jst#{@jst}")
+        empty_directory File.join(template_path, file_name.pluralize)
+        file = File.join(template_path, file_name.pluralize, "index.jst#{@jst}")
+        template "template.jst#{@jst}", file
       end
 
     end

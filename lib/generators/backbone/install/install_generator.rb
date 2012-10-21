@@ -1,5 +1,4 @@
 require 'generators/backbone/helpers'
-require 'rails'
 
 module Backbone
   module Generators
@@ -10,18 +9,24 @@ module Backbone
 
       desc "Generates a Backbone.js skeleton directory structure and manifest"
 
-      class_option :javascript, type: :boolean, aliases: "-j", default: false,
+      class_option :javascript,
+                    type: :boolean,
+                    aliases: "-j",
+                    default: false,
                     desc: "Generate JavaScript"
 
-      class_option :manifest, type: :string, aliases: "-m", default: "application.js",
+      class_option :manifest,
+                    type: :string,
+                    aliases: "-m",
+                    default: "application.js",
                     desc: "Javascript manifest file to modify (or create)"
 
       def create_dir_layout
-        empty_directory "#{javascript_path}/models"
-        empty_directory "#{javascript_path}/collections"
-        empty_directory "#{javascript_path}/routers"
-        empty_directory "#{javascript_path}/views"
-        empty_directory "#{asset_path}/templates"
+        empty_directory model_path
+        empty_directory collection_path
+        empty_directory router_path
+        empty_directory view_path
+        empty_directory template_path
       end
 
       def create_app_file
@@ -31,7 +36,7 @@ module Backbone
       end
 
       def inject_backbone
-        manifest = "#{javascript_path}/#{options.manifest}"
+        manifest = File.join(javascript_path, options.manifest)
         custom_manifest = options.manifest != 'application.js'
         libs = %w(underscore backbone)
         paths = %w(../templates ./models ./collections ./views ./routers)

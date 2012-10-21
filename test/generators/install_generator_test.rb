@@ -5,6 +5,8 @@ require 'generators/backbone/install/install_generator'
 class InstallGeneratorTest < Rails::Generators::TestCase
 
   tests Backbone::Generators::InstallGenerator
+
+  # Include custom helpers
   include Backbone::Generators::Helpers
 
   # Generator output directory ('Rails.root')
@@ -15,21 +17,27 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
   test "directory structure is created" do
     run_generator
-    assert_directory "#{javascript_path}/models"
-    assert_directory "#{javascript_path}/collections"
-    assert_directory "#{javascript_path}/views"
-    assert_directory "#{javascript_path}/routers"
-    assert_directory "#{asset_path}/templates"
+    assert_directory model_path
+    assert_directory collection_path
+    assert_directory router_path
+    assert_directory view_path
+    assert_directory template_path
   end
 
   test "app coffee file is created" do
     run_generator
-    assert_file "#{javascript_path}/#{app_filename}.js.coffee"
+    assert_file "#{javascript_path}/#{app_filename}.js.coffee" do |content|
+      assert_match(/window\.#{app_name}/, content)
+      assert_match(/#{app_name}\.init/, content)
+    end
   end
 
   test "app javascript file is created" do
     run_generator ['--javascript']
-    assert_file "#{javascript_path}/#{app_filename}.js"
+    assert_file "#{javascript_path}/#{app_filename}.js" do |content|
+      assert_match(/window\.#{app_name}/, content)
+      assert_match(/#{app_name}\.init/, content)
+    end
   end
 
   test "require paths are injected into default manifest" do

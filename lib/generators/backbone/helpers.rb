@@ -3,11 +3,39 @@ module Backbone
     module Helpers
 
       def asset_path
-        "app/assets"
+        File.join('app', 'assets')
       end
 
       def javascript_path
-        "#{asset_path}/javascripts"
+        File.join(asset_path, 'javascripts')
+      end
+
+      def model_path
+        File.join(javascript_path, "models")
+      end
+
+      def collection_path
+        File.join(javascript_path, "collections")
+      end
+
+      def router_path
+        File.join(javascript_path, "routers")
+      end
+
+      def view_path
+        File.join(javascript_path, "views")
+      end
+
+      def template_path
+        File.join(asset_path, "templates")
+      end
+
+      def singular_file_name
+        "#{file_name.singularize}#{@ext}"
+      end
+
+      def plural_file_name
+        "#{file_name.pluralize}#{@ext}"
       end
 
       def model_namespace
@@ -27,7 +55,7 @@ module Backbone
       end
 
       def template_namespace
-        [file_path.pluralize, "index"].join("/")
+        File.join(file_path.pluralize, "index")
       end
 
       def app_name
