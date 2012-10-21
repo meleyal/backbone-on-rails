@@ -3,7 +3,7 @@ window.<%= app_name %> =
   Collections: {}
   Views: {}
   Routers: {}
-  init: -> alert 'Hello from Backbone!'
+  initialize: -> alert 'Hello from Backbone!'
 
 $(document).ready ->
-  <%= app_name %>.init()
+  <%= app_name %>.initialize()

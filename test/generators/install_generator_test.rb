@@ -28,7 +28,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     run_generator
     assert_file "#{javascript_path}/#{app_filename}.js.coffee" do |content|
       assert_match(/window\.#{app_name}/, content)
-      assert_match(/#{app_name}\.init/, content)
+      assert_match(/#{app_name}\.initialize/, content)
     end
   end
 
@@ -36,7 +36,7 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     run_generator ['--javascript']
     assert_file "#{javascript_path}/#{app_filename}.js" do |content|
       assert_match(/window\.#{app_name}/, content)
-      assert_match(/#{app_name}\.init/, content)
+      assert_match(/#{app_name}\.initialize/, content)
     end
   end
 
