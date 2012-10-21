@@ -37,22 +37,21 @@ module Backbone
 
       def inject_backbone
         manifest = File.join(javascript_path, options.manifest)
-        custom_manifest = options.manifest != 'application.js'
         libs = %w(underscore backbone)
         paths = %w(../templates ./models ./collections ./views ./routers)
-        sentinel =  /\/\/=\s+require_tree\s+\.[^\/\w]*/
+
+        out = []
+        out << libs.map{ |lib| "//= require #{lib}" }
+        out << "//= require #{app_filename}"
+        out << paths.map{ |path| "//= require_tree #{path}" }
+        out = out.join("\n") + "\n"
 
         in_root do
           create_file(manifest) unless File.exists?(manifest)
-          out = []
-          out << libs.map{ |lib| "//= require #{lib}" }
-          out << "//= require #{app_filename}"
-          out << paths.map{ |path| "//= require_tree #{path}" }
-          out = out.join("\n") + "\n"
-          if custom_manifest
-            append_file(manifest, out)
+          if File.open(manifest).read().include?('//= require_tree')
+            inject_into_file(manifest, out, before: '//= require_tree')
           else
-            inject_into_file(manifest, out, before: sentinel)
+            append_file(manifest, out)
           end
         end
       end

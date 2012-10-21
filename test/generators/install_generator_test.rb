@@ -48,6 +48,14 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "require paths are injected into empty manifest" do
+    create_empty_manifest
+    run_generator
+    assert_file "#{javascript_path}/application.js" do |content|
+      test_manifest_content(content)
+    end
+  end
+
   test "require paths are injected into custom manifest" do
     manifest = 'index.js'
     run_generator ['--manifest', manifest]
@@ -74,6 +82,13 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     destination = File.join destination_root, javascript_path
     FileUtils.mkdir_p destination
     FileUtils.cp manifest, destination
+  end
+
+  def create_empty_manifest
+    destination = File.join destination_root, javascript_path
+    manifest = File.join destination, 'application.js'
+    FileUtils.mkdir_p destination
+    FileUtils.touch manifest
   end
 
 end
