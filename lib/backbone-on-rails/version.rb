@@ -1,3 +1,3 @@
 module BackboneOnRails
-  VERSION = "0.9.9.0"
+  VERSION = "0.9.10.0"
 end
