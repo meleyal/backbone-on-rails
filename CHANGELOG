@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+1.1.1.0 (Feb 13, 2014)
+----------------------
+- Update Backbone to 1.1.1
+- Update Underscore to 1.6.0
+
 1.1.0.0 (Oct 14, 2013)
 ----------------------
 - Update Backbone to 1.1.0
