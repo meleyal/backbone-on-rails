@@ -1,10 +1,11 @@
 CHANGELOG
 =========
 
-1.1.1.0 (Feb 13, 2014)
-----------------------
+1.1.1.0 (Feb 14, 2014 <3)
+-------------------------
 - Update Backbone to 1.1.1
 - Update Underscore to 1.6.0
+- Enable usage with non-active_record projects (#52)
 
 1.1.0.0 (Oct 14, 2013)
 ----------------------
