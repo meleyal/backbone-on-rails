@@ -16,7 +16,13 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test}/*`.split("\n")
 
-  s.add_dependency 'rails', '>= 3.1'
+  # s.add_dependency 'rails', '>= 3.1'
+  # gem 'rails' # we don't want to load activerecord so we can't require rails
+  s.add_dependency 'railties'
+  s.add_dependency 'actionpack'
+  s.add_dependency 'actionmailer'
+  s.add_dependency 'activemodel'
+  s.add_dependency 'activeresource'
   s.add_dependency 'jquery-rails'
   s.add_dependency 'ejs'
   s.add_dependency 'eco'
