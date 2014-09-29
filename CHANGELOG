@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+1.1.2.1 (unreleased)
+--------------------
+- Only depend on railties (#60)
+
 1.1.2.0 (Sep 26, 2014)
 ----------------------
 - Update Backbone to 1.1.2 (#65)
