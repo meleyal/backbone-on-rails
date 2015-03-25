@@ -1,9 +1,10 @@
 CHANGELOG
 =========
 
-1.1.2.1 (unreleased)
+1.1.2.1 (Mar 25, 2015)
 --------------------
 - Only depend on railties (#60)
+- Update Underscore to 1.8.2
 
 1.1.2.0 (Sep 26, 2014)
 ----------------------
