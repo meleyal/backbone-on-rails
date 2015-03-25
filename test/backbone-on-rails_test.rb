@@ -10,7 +10,7 @@ class BackboneOnRailsTest < Rails::Generators::TestCase
 
   test "underscore.js is found as an asset" do
     assert_not_nil @app.assets["underscore"]
-    assert_file "#{BackboneOnRails::Engine.root}/vendor/assets/javascripts/underscore.js", /1.7.0/
+    assert_file "#{BackboneOnRails::Engine.root}/vendor/assets/javascripts/underscore.js", /1.8.2/
   end
 
   test "backbone.js is found as an asset" do
