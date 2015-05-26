@@ -7,7 +7,7 @@ module Backbone
       end
 
       def javascript_path
-        File.join(asset_path, 'javascripts')
+        File.join(asset_path, ['javascripts', @subdirname].compact.join('/'))
       end
 
       def model_path
@@ -27,7 +27,7 @@ module Backbone
       end
 
       def template_path
-        File.join(asset_path, "templates")
+        File.join(asset_path, ['templates', @subdirname].compact.join('/'))
       end
 
       def singular_file_name
@@ -63,7 +63,7 @@ module Backbone
       end
 
       def template_namespace
-        File.join(file_path.pluralize, "index")
+        File.join([@subdirname, file_path.pluralize].compact.join('/'), "index")
       end
 
       def app_name

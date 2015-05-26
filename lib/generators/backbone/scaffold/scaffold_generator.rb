@@ -21,11 +21,18 @@ module Backbone
                     default: nil,
                     desc: "Application Name"
 
+      class_option :dir,
+                    type: :string,
+                    aliases: "-d",
+                    default: nil,
+                    desc: "Subdirectory for files"
+
       def parse_options
         js = options.javascript
         @ext = js ? ".js" : ".js.coffee"
         @jst = js ? ".ejs" : ".eco"
         @rails_app_name = options.appname || Rails.application.class.name.split('::').first
+        @subdirname = options.dir
       end
 
       def create_backbone_model

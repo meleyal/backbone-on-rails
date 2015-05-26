@@ -21,6 +21,9 @@ module Backbone
                     default: "application.js",
                     desc: "Javascript manifest file to modify (or create)"
 
+      def setup
+        @rails_app_name = options.appname || Rails.application.class.name.split('::').first
+      end
 
       def create_dir_layout
         empty_directory model_path
