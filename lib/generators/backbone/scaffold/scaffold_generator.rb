@@ -31,7 +31,7 @@ module Backbone
         js = options.javascript
         @ext = js ? ".js" : ".js.coffee"
         @jst = js ? ".ejs" : ".eco"
-        @rails_app_name = options.appname || Rails.application.class.name.split('::').first
+        @rails_app_name = options.appname
         @subdirname = options.dir
       end
 

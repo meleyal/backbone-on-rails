@@ -24,6 +24,15 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     assert_directory template_path
   end
 
+  test "directory structure is created in a subdirectory" do
+    run_generator ['-d=custom']
+    assert_directory 'app/assets/javascripts/custom/routers'
+    assert_directory 'app/assets/javascripts/custom/models'
+    assert_directory 'app/assets/javascripts/custom/collections'
+    assert_directory 'app/assets/javascripts/custom/views'
+    assert_directory 'app/assets/templates/custom'
+  end
+
   test "app coffee file is created" do
     run_generator
     assert_file "#{javascript_path}/#{app_filename}.js.coffee" do |content|
@@ -34,13 +43,9 @@ class InstallGeneratorTest < Rails::Generators::TestCase
 
   test "app coffee file is created with custom app name" do
     run_generator ['-a=Custom']
-
-    assert_equal(app_filename, 'custom')
-    assert_equal(app_name, 'Custom')
-
-    assert_file "#{javascript_path}/#{app_filename}.js.coffee" do |content|
-      assert_match(/window\.#{app_name}/, content)
-      assert_match(/#{app_name}\.initialize/, content)
+    assert_file "#{javascript_path}/custom.js.coffee" do |content|
+      assert_match(/window\.Custom/, content)
+      assert_match(/Custom\.initialize/, content)
     end
   end
 
