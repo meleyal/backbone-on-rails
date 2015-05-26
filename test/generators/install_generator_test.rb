@@ -32,6 +32,16 @@ class InstallGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "app coffee file is created with custom app name" do
+    run_generator ['-a=Custom']
+    assert_file "#{javascript_path}/#{app_filename}.js.coffee" do |content|
+      asset_equal(app_filename, 'custom.js.coffeee')
+      asset_equal(app_name, 'Custom')
+      assert_match(/window\.#{app_name}/, content)
+      assert_match(/#{app_name}\.initialize/, content)
+    end
+  end
+
   test "app javascript file is created" do
     run_generator ['--javascript']
     assert_file "#{javascript_path}/#{app_filename}.js" do |content|

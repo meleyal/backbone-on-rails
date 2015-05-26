@@ -15,10 +15,17 @@ module Backbone
                     default: false,
                     desc: "Generate JavaScript"
 
+      class_option :appname,
+                    type: :string,
+                    aliases: "-a",
+                    default: nil,
+                    desc: "Application Name"
+
       def parse_options
         js = options.javascript
         @ext = js ? ".js" : ".js.coffee"
         @jst = js ? ".ejs" : ".eco"
+        @rails_app_name = options.appname || Rails.application.class.name.split('::').first
       end
 
       def create_backbone_model

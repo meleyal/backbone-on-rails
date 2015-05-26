@@ -21,6 +21,7 @@ module Backbone
                     default: "application.js",
                     desc: "Javascript manifest file to modify (or create)"
 
+
       def create_dir_layout
         empty_directory model_path
         empty_directory collection_path
@@ -55,7 +56,6 @@ module Backbone
           end
         end
       end
-
     end
   end
 end

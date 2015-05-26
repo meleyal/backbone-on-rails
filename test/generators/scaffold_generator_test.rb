@@ -22,6 +22,13 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "model coffee file is created with custom Appname" do
+    run_generator ['planet', '-a=Custom']
+    assert_file "#{model_path}/planet.js.coffee" do |content|
+      assert_match('class Custom.Models.Planet', content)
+    end
+  end
+
   test "model javascript file is created" do
     run_generator ['planet', '--javascript']
     assert_file "#{model_path}/planet.js" do |content|
@@ -34,6 +41,14 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     assert_file "#{collection_path}/planets.js.coffee" do |content|
       assert_match('class Dummy.Collections.Planets', content)
       assert_match('model: Dummy.Models.Planet', content)
+    end
+  end
+
+  test "collection coffee file is created with custom App" do
+    run_generator ['planet', '-a=Custom']
+    assert_file "#{collection_path}/planets.js.coffee" do |content|
+      assert_match('class Custom.Collections.Planets', content)
+      assert_match('model: Custom.Models.Planet', content)
     end
   end
 
@@ -59,6 +74,13 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     end
   end
 
+  test "router coffee file is created with custom appname" do
+    run_generator ['planet', '-a=Custom']
+    assert_file "#{router_path}/planets_router.js.coffee" do |content|
+      assert_match('class Custom.Routers.Planets', content)
+    end
+  end
+
   test "view coffee file is created" do
     run_generator ['planet']
     assert_file "#{view_path}/planets/planets_index.js.coffee" do |content|
@@ -71,6 +93,14 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
     run_generator ['planet', '--javascript']
     assert_file "#{view_path}/planets/planets_index.js" do |content|
       assert_match('Dummy.Views.PlanetsIndex = Backbone.View.extend', content)
+      assert_match("template: JST['planets/index']", content)
+    end
+  end
+
+  test "view coffee file is created with custom appname" do
+    run_generator ['planet', '-a=Custom']
+    assert_file "#{view_path}/planets/planets_index.js.coffee" do |content|
+      assert_match('class Custom.Views.PlanetsIndex', content)
       assert_match("template: JST['planets/index']", content)
     end
   end

@@ -75,7 +75,7 @@ module Backbone
       end
 
       def rails_app_name
-        Rails.application.class.name.split('::').first
+        @rails_app_name ||= Rails.application.class.name.split('::').first
       end
 
     end
