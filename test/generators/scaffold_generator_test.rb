@@ -60,7 +60,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
   end
 
   test "collection coffee file is created in a subdir" do
-    run_generator ['planet', '--dir=custom', '--appname=Custom']
+    run_generator ['planet', '--dir=custom', '--app=Custom']
     assert_file "app/assets/javascripts/custom/collections/planets.js.coffee" do |content|
       assert_match('class Custom.Collections.Planets', content)
       assert_match('model: Custom.Models.Planet', content)
@@ -128,7 +128,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
   end
 
   test "view coffee file is created with a different template controller" do
-    run_generator ['planet', '--tpl_controller=SHT']
+    run_generator ['planet', '--template_namespace=SHT']
     assert_file "#{view_path}/planets/planets_index.js.coffee" do |content|
       assert_match('class Dummy.Views.PlanetsIndex', content)
       assert_match("template: SHT['planets/index']", content)
@@ -136,7 +136,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
   end
 
   test "view javascript file is created with a different template controller" do
-    run_generator ['planet', '--javascript', '--tpl_controller=SHT']
+    run_generator ['planet', '--javascript', '--template_namespace=SHT']
     assert_file "#{view_path}/planets/planets_index.js" do |content|
       assert_match('Dummy.Views.PlanetsIndex = Backbone.View.extend', content)
       assert_match("template: SHT['planets/index']", content)
@@ -152,7 +152,7 @@ class ScaffoldGeneratorTest < Rails::Generators::TestCase
   end
 
   test "template eco file is created with handlebars" do
-    run_generator ['planet', '--tpl=hbs']
+    run_generator ['planet', '--template=hbs']
     assert_file "#{template_path}/planets/index.hbs"
   end
 

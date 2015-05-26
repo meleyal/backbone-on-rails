@@ -21,7 +21,7 @@ module Backbone
                     default: "application.js",
                     desc: "Javascript manifest file to modify (or create)"
 
-      class_option :appname,
+      class_option :app,
                     type: :string,
                     aliases: "-a",
                     default: nil,
@@ -34,7 +34,7 @@ module Backbone
                     desc: "Subdirectory for files"
 
       def setup
-        @rails_app_name = options.appname
+        @rails_app_name = options.app
         @subdirname = options.dir
       end
 

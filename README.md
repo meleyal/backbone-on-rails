@@ -74,7 +74,7 @@ Tricks
     rails generate backbone:install --javascript
 
     # Custom Appname
-    rails generate backbone:install --appname=CustomApp
+    rails generate backbone:install --app=CustomApp
 
     # Place code within a sub directory structure
     rails generate backbone:install --dir=custom_app
@@ -89,10 +89,10 @@ Tricks
     rails generate backbone:scaffold planet -d=custom_app
 
     # Use Handlebars File instead of JST
-    rails generate backbone:scaffold planet --tpl=hbs
+    rails generate backbone:scaffold planet --template=hbs
 
     # Use SHT instead of JST as JS Object
-    rails generate backbone:scaffold planet --tpl_controller=SHT
+    rails generate backbone:scaffold planet --template_controller=SHT
 
 Alternatives
 ------------
