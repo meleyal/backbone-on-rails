@@ -27,12 +27,38 @@ module Backbone
                     default: nil,
                     desc: "Subdirectory for files"
 
+      class_option :tpl,
+                    type: :string,
+                    default: "ejs",
+                    desc: "Extension for template files"
+
+      class_option :tpl_controller,
+                    type: :string,
+                    default: "JST",
+                    desc: "Template controller (ex: JST / SHT / and so on)"
+
       def parse_options
         js = options.javascript
         @ext = js ? ".js" : ".js.coffee"
-        @jst = js ? ".ejs" : ".eco"
         @rails_app_name = options.appname
         @subdirname = options.dir
+      end
+
+      def parse_javascript_templates
+        js = options.javascript
+
+        # Add additional formats here if we'd like to extend.
+        # => 2015/05/26 Added Handlebars Templates.
+        #
+        @jst = case options.tpl
+          when 'hbs'
+            'hbs'
+          else
+            js ? 'jst.ejs' : 'jst.eco'
+        end
+
+        # Instead of re-writing the template portion of the JS repeatedly, adding an option to allow custom object name for templates
+        @template_controller = options.tpl_controller
       end
 
       def create_backbone_model
@@ -58,8 +84,8 @@ module Backbone
 
       def create_backbone_template
         empty_directory File.join(template_path, file_name.pluralize)
-        file = File.join(template_path, file_name.pluralize, "index.jst#{@jst}")
-        template "template.jst#{@jst}", file
+        file = File.join(template_path, file_name.pluralize, "index.#{@jst}")
+        template "template.#{@jst}", file
       end
 
     end

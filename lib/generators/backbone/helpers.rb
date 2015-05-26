@@ -66,6 +66,10 @@ module Backbone
         File.join([@subdirname, file_path.pluralize].compact.join('/'), "index")
       end
 
+      def template_controller
+        @template_controller ||= 'JST'
+      end
+
       def app_name
         rails_app_name.camelize
       end

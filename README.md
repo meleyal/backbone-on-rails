@@ -73,9 +73,26 @@ Tricks
     # Generate JavaScript
     rails generate backbone:install --javascript
 
+    # Custom Appname
+    rails generate backbone:install --appname=CustomApp
+
+    # Place code within a sub directory structure
+    rails generate backbone:install --dir=custom_app
+
     # Remove generated files
     rails destroy backbone:scaffold planet
 
+    # Create a custom app name
+    rails generate backbone:scaffold planet -a=CustomApp
+
+    # Generate scaffold in sub directory of assets/javascripts & assets/templates
+    rails generate backbone:scaffold planet -d=custom_app
+
+    # Use Handlebars File instead of JST
+    rails generate backbone:scaffold planet --tpl=hbs
+
+    # Use SHT instead of JST as JS Object
+    rails generate backbone:scaffold planet --tpl_controller=SHT
 
 Alternatives
 ------------
