@@ -91,8 +91,8 @@ Tricks
     # Use Handlebars File instead of JST
     rails generate backbone:scaffold planet --template=hbs
 
-    # Use SHT instead of JST as JS Object
-    rails generate backbone:scaffold planet --template_controller=SHT
+    # Use SHT instead of JST as template namespace
+    rails generate backbone:scaffold planet --template_namespace=SHT
 
 Alternatives
 ------------
