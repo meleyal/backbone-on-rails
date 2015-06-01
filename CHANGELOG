@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+1.2.0.0 (Jun 01, 2015)
+--------------------
+- Add optional app name and path to generators (#70)
+- Update Backbone to 1.2.0
+- Update Underscore to 1.8.3
+
 1.1.2.1 (Mar 25, 2015)
 --------------------
 - Only depend on railties (#60)
