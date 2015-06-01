@@ -15,7 +15,7 @@ class BackboneOnRailsTest < Rails::Generators::TestCase
 
   test "backbone.js is found as an asset" do
     assert_not_nil @app.assets["backbone"]
-    assert_file "#{BackboneOnRails::Engine.root}/vendor/assets/javascripts/backbone.js", /1.1.2/
+    assert_file "#{BackboneOnRails::Engine.root}/vendor/assets/javascripts/backbone.js", /1.2.0/
   end
 
 end
